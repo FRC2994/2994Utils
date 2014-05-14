@@ -3,6 +3,8 @@
 
 #include "WPILib.h"
 #include "EGamepad.h"
+#include "EJoystick.h"
+#include "ERobotDrive.h"
 
 #define BUTTON_CALIBRATE 1
 // TODO: Look at controllers to see what the front left and right triggers are
@@ -29,9 +31,9 @@
   
 /* }; */
 
-class Autonomous {
+class AutonomousHelper {
 public:
-  Autonomous(RobotDrive *rbt, Encoder *left, Encoder *right,
+  AutonomousHelper(ERobotDrive *rbt, Encoder *left, Encoder *right,
 	     EGamepad *gamepad=0, EJoystick *joystick=0);
 
   // Runs a standard calibration routine.
@@ -46,13 +48,13 @@ public:
 
 private:
   void PrintCalibrationDisplay(double distance, char enc);
-  void PrintCalibrationFinishedDisplay(double constant);
+  void PrintCalibrationFinishedDisplay();
   void PrintInstructions();
   void ResetEncoders();
   void StartEncoders();
   void StopEncoders();
 
-  RobotDrive *m_rbt;
+  ERobotDrive *rbt;
   Encoder *left, *right;
   char left_sign, right_sign;
   DriverStationLCD *dsLCD;
